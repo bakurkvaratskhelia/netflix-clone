@@ -19,6 +19,9 @@ const WatchPage = () => {
   const { contentType } = useContentStore()
 
   const sliderRef = useRef(null)
+  const currentTrailer =
+    trailers.length > 0 ? trailers[currentTrailerIdx] : null
+  console.log('Current trailer:', currentTrailer)
 
   useEffect(() => {
     const getTrailers = async () => {
@@ -159,15 +162,22 @@ const WatchPage = () => {
           </div>
         )}
 
-        <div className='aspect-video mb-8 p-2 sm:px-10 md:px-32'>
-          {trailers.length > 0 && trailers[currentTrailerIdx]?.key ? (
-            <ReactPlayer
-              controls={true}
-              width={'100%'}
-              height={'70vh'}
-              className='mx-auto overflow-hidden rounded-lg'
-              url={`https://www.youtube.com/watch?v=${trailers[currentTrailerIdx].key}`}
-            />
+        <div className='mb-8 p-2 sm:px-10 md:px-32'>
+          {trailers.length > 0 ? (
+            trailers.map((trailer, idx) => (
+              <div key={trailer.key || idx} className='mb-6'>
+                <div className='text-center text-gray-400 mb-2'>
+                  {trailer.name} ({trailer.type})
+                </div>
+                <ReactPlayer
+                  controls
+                  width='100%'
+                  height='360px'
+                  className='mx-auto overflow-hidden rounded-lg'
+                  url={`https://www.youtube.com/watch?v=${trailer.key}`}
+                />
+              </div>
+            ))
           ) : (
             <h2 className='text-xl text-center mt-5'>
               No trailers available for{' '}
