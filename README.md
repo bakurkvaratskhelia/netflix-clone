@@ -51,6 +51,10 @@ This project showcases modern web app skills, responsive design, and practical f
 
 ![TV Shows](screenshots/tvshowspage.png)
 
+## Watch Page
+
+![Watch Page](screenshots/watchpage.png)
+
 ## Watch History
 
 ![History](screenshots/historypage.png)
