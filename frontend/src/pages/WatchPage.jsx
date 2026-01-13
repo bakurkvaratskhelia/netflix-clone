@@ -162,22 +162,15 @@ const WatchPage = () => {
           </div>
         )}
 
-        <div className='mb-8 p-2 sm:px-10 md:px-32'>
-          {trailers.length > 0 ? (
-            trailers.map((trailer, idx) => (
-              <div key={trailer.key || idx} className='mb-6'>
-                <div className='text-center text-gray-400 mb-2'>
-                  {trailer.name} ({trailer.type})
-                </div>
-                <ReactPlayer
-                  controls
-                  width='100%'
-                  height='360px'
-                  className='mx-auto overflow-hidden rounded-lg'
-                  url={`https://www.youtube.com/watch?v=${trailer.key}`}
-                />
-              </div>
-            ))
+        <div className='aspect-video mb-8 p-2 sm:px-10 md:px-32'>
+          {currentTrailer && currentTrailer.key ? (
+            <ReactPlayer
+              controls
+              width='100%'
+              height='70vh'
+              className='mx-auto overflow-hidden rounded-lg'
+              url={`https://www.youtube.com/watch?v=${currentTrailer.key}`}
+            />
           ) : (
             <h2 className='text-xl text-center mt-5'>
               No trailers available for{' '}
@@ -188,7 +181,6 @@ const WatchPage = () => {
             </h2>
           )}
         </div>
-
         {/* movie details */}
         <div className='flex flex-col md:flex-row items-center justify-between gap-20 	max-w-6xl mx-auto'>
           <div className='mb-4 md:mb-0'>
