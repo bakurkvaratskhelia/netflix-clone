@@ -29,7 +29,7 @@ This project showcases modern web app skills, responsive design, and practical f
 
 ## Screenshots
 
-> _Include screenshots of landing, browsing, login, and player screens here for maximum employer interest! Place images in a `/screenshots` directory and reference them below._
+
 
 - #### Landing Page  
   ![Landing](screenshots/landing.png)
