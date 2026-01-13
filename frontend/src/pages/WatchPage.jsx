@@ -172,15 +172,16 @@ const WatchPage = () => {
                 className='mx-auto overflow-hidden rounded-lg'
                 url={`https://www.youtube.com/watch?v=${currentTrailer.key}`}
               />
-              {/* Add iframe for debugging */}
+              {/* Direct iframe for debugging/troubleshooting */}
               <iframe
                 width='560'
                 height='315'
-                src='https://www.youtube.com/embed/aTAacTUKK00'
+                src={`https://www.youtube.com/embed/${currentTrailer.key}`}
                 frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                 allowFullScreen
                 title='Test Trailer'
+                style={{ display: 'block', margin: '16px auto' }}
               />
             </>
           ) : (
