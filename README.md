@@ -26,10 +26,11 @@ This project showcases modern web app skills, responsive design, and practical f
 - **API:** TMDb or similar for movie data (optional custom API for learning)
 
 ---
-## Demo
+## 🚀 Demo
 
 ![App Demo](screenshots/demo.gif)
 
+---
 ## Homepage
 
 ![Homepage](screenshots/homepage.png)
