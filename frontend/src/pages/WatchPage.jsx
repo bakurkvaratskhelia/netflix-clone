@@ -162,21 +162,16 @@ const WatchPage = () => {
           </div>
         )}
 
-        <div className='aspect-video mb-8 p-2 sm:px-10 md:px-32'>
+        <div className='relative aspect-video mb-8 p-2 sm:px-10 md:px-32'>
           {currentTrailer && currentTrailer.key ? (
             <iframe
-              width='100%'
-              height='100%'
               src={`https://www.youtube.com/embed/${currentTrailer.key}`}
-              frameBorder='0'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               allowFullScreen
               title='Trailer'
-              style={{
-                display: 'block',
-                margin: '16px auto',
-                borderRadius: '8px'
-              }}
+              // Take up the entire aspect-ratio box:
+              className='absolute top-0 left-0 w-full h-full rounded-lg'
+              style={{ border: 'none' }}
             />
           ) : (
             <h2 className='text-xl text-center mt-5'>
