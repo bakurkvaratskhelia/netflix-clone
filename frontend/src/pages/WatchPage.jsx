@@ -9,7 +9,6 @@ import { ORIGINAL_IMG_BASE_URL, SMALL_IMG_BASE_URL } from '../utils/constants'
 import { formatReleaseDate } from '../utils/dateFunction'
 import WatchPageSkeleton from '../components/skeletons/WatchPageSkeleton'
 
-
 const WatchPage = () => {
   const { id } = useParams()
   const [trailers, setTrailers] = useState([])
@@ -25,7 +24,15 @@ const WatchPage = () => {
     const getTrailers = async () => {
       try {
         const res = await axios.get(`/api/${contentType}/${id}/trailers`)
-        setTrailers(res.data.trailers)
+        // Only YouTube videos of type "Trailer" or "Teaser"
+        const filtered = res.data.trailers.filter(
+          t =>
+            t.site === 'YouTube' &&
+            ['Trailer', 'Teaser'].includes(t.type) &&
+            t.key &&
+            t.key.trim() !== ''
+        )
+        setTrailers(filtered)
       } catch (error) {
         if (error.message.includes('404')) {
           setTrailers([])
@@ -33,10 +40,8 @@ const WatchPage = () => {
       }
     }
 
-    getTrailers();
-  }, [contentType, id]);
-
-  
+    getTrailers()
+  }, [contentType, id])
 
   useEffect(() => {
     const getSimilarContent = async () => {
@@ -52,7 +57,6 @@ const WatchPage = () => {
 
     getSimilarContent()
   }, [contentType, id])
-  
 
   useEffect(() => {
     const getContentDetails = async () => {
@@ -71,11 +75,9 @@ const WatchPage = () => {
     getContentDetails()
   }, [contentType, id])
 
-  console.log('Trailers:', trailers);
-  console.log('SimilarContent:', similarContent);
-  console.log('content', content);
-
-  
+  console.log('Trailers:', trailers)
+  console.log('SimilarContent:', similarContent)
+  console.log('content', content)
 
   const handleNext = () => {
     if (currentTrailerIdx < trailers.length - 1)
@@ -158,18 +160,15 @@ const WatchPage = () => {
         )}
 
         <div className='aspect-video mb-8 p-2 sm:px-10 md:px-32'>
-          {trailers.length > 0 && (
+          {trailers.length > 0 && trailers[currentTrailerIdx]?.key ? (
             <ReactPlayer
               controls={true}
               width={'100%'}
               height={'70vh'}
               className='mx-auto overflow-hidden rounded-lg'
-              url={"https://www.youtube.com/watch?v=" + trailers[currentTrailerIdx].key}
+              url={`https://www.youtube.com/watch?v=${trailers[currentTrailerIdx].key}`}
             />
-          )}
-          
-
-          {trailers?.length === 0 && (
+          ) : (
             <h2 className='text-xl text-center mt-5'>
               No trailers available for{' '}
               <span className='font-bold text-red-600'>
@@ -180,12 +179,8 @@ const WatchPage = () => {
           )}
         </div>
 
-        
-
         {/* movie details */}
-        <div
-          className='flex flex-col md:flex-row items-center justify-between gap-20 	max-w-6xl mx-auto'
-        >
+        <div className='flex flex-col md:flex-row items-center justify-between gap-20 	max-w-6xl mx-auto'>
           <div className='mb-4 md:mb-0'>
             <h2 className='text-5xl font-bold text-balance'>
               {content?.title || content?.name}
@@ -238,7 +233,6 @@ const WatchPage = () => {
                   </Link>
                 )
               })}
-
               <ChevronRight
                 className='absolute top-1/2 -translate-y-1/2 right-2 w-8 h-8 opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer bg-red-600 text-white rounded-full'
                 onClick={scrollRight}
@@ -253,6 +247,5 @@ const WatchPage = () => {
       </div>
     </div>
   )
-  
 }
 export default WatchPage
