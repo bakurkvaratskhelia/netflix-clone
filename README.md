@@ -27,20 +27,33 @@ This project showcases modern web app skills, responsive design, and practical f
 
 ---
 
-## Screenshots
+## Homepage
 
+![Homepage](screenshots/homepage.png)
 
+## Login Page
 
-- #### Landing Page  
-  ![Landing](screenshots/landing.png)
-- #### Browse UI  
-  ![Browse](screenshots/browse.png)
-- #### Login/Signup  
-  ![Auth](screenshots/auth.png)
-- #### Movie Detail  
-  ![Detail](screenshots/detail.png)
+![Login](screenshots/login.png)
 
----
+## Signup Page
+
+![Signup](screenshots/signup.png)
+
+## Movie Page
+
+![Movie Page](screenshots/moviepage.png)
+
+## TV Shows Page
+
+![TV Shows](screenshots/tvshowspage.png)
+
+## Watch History
+
+![History](screenshots/historypage.png)
+
+## Error Page
+
+![Error Page](screenshots/errorpage.png)
 
 ## Project Structure
 
