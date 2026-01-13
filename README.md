@@ -59,6 +59,15 @@ This project showcases modern web app skills, responsive design, and practical f
 
 ![Error Page](screenshots/errorpage.png)
 
+## 📦 Features
+
+- Browse movies and TV shows
+- Watch trailers
+- Search functionality
+- User authentication
+- Watch history
+- ...and more!
+
 ## Project Structure
 
 ```
